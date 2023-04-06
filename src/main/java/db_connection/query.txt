@@ -1,0 +1,48 @@
+CREATE DATABASE assignment_java4;
+
+USE assignment_java4;
+
+SELECT Video.*, CASE WHEN Favorite.Id IS NULL THEN FALSE ELSE TRUE END AS 'Like'
+FROM Video
+LEFT JOIN Favorite ON Video.Id = Favorite.VideoId AND Favorite.UserId = 'user4' where Video.Active = 1
+
+SELECT * from video v join favorite f on v.Id = f.VideoId where f.UserId = 'user4'
+
+CREATE TABLE Video (
+	Id NVARCHAR(100) NOT NULL PRIMARY KEY,
+	Title NVARCHAR(100) NULL,
+	Poster NVARCHAR(100) NULL,
+    Views INTEGER,
+    Description NVARCHAR(1000),
+    Active boolean null
+);
+
+CREATE TABLE User (
+	Id NVARCHAR(100) NOT NULL PRIMARY KEY,
+	Password NVARCHAR(100) NULL,
+	Email NVARCHAR(100) NULL,
+    Fullname NVARCHAR(100) NULL,
+    Admin boolean NULL
+);
+
+CREATE TABLE Favorite (
+	Id integer NOT NULL PRIMARY KEY auto_increment,
+	UserId NVARCHAR(100) NOT NULL ,
+	VideoId NVARCHAR(100) NOT NULL,
+    LikeDate DATE NULL,
+    FOREIGN KEY (UserId) REFERENCES User(Id),
+    FOREIGN KEY (VideoId) REFERENCES Video(Id)
+);
+
+ALTER TABLE Favorite
+DROP COLUMN Admin;
+
+CREATE TABLE Share (
+	Id integer NOT NULL PRIMARY KEY auto_increment,
+	UserId NVARCHAR(100) NOT NULL,
+	VideoId NVARCHAR(100) NOT NULL,
+	Emails NVARCHAR(100) NULL,
+	ShareDate DATE NULL,
+    FOREIGN KEY (UserId) REFERENCES User(Id),
+    FOREIGN KEY (VideoId) REFERENCES Video(Id)
+)

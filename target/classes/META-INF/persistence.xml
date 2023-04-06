@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<persistence xmlns="https://jakarta.ee/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="https://jakarta.ee/xml/ns/persistence https://jakarta.ee/xml/ns/persistence/persistence_3_0.xsd"
+             version="3.0">
+    <persistence-unit name="assignment_java4">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <class>entity.Favorite</class>
+        <class>entity.Share</class>
+        <class>entity.User</class>
+        <class>entity.Video</class>
+        <class>entity.VideoCustom</class>
+        <class>entity.FavoriteCustom</class>
+        <properties>
+            <property name="jakarta.persistence.jdbc.url"
+                      value="jdbc:mysql://localhost:3306/assignment_java4"/>
+            <property name="jakarta.persistence.jdbc.user" value="root"/>
+            <property name="jakarta.persistence.jdbc.password" value="12345678"/>
+            <property name="jakarta.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+<!--            <property name="eclipselink.logging.level.sql" value="FINE"/>-->
+        </properties>
+    </persistence-unit>
+</persistence>
